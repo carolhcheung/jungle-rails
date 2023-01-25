@@ -7,11 +7,11 @@
  
   <table class="table table-striped table-bordered h4">
   <tr>
-    <td>Number of products:</td> 
+    <td><%= link_to 'Products', [:admin, :products], class: "nav-link" %></td> 
     <td class="success"><%= @products_count %></td> 
   </tr>
   <tr>
-    <td class="active">Number of categories:</td> 
+    <td class="active">Categories:</td> 
     <td class="success"><%= @category_count %></td> 
   </tr>
 </table>
