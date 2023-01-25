@@ -11,7 +11,7 @@
     <td class="success"><%= @products_count %></td> 
   </tr>
   <tr>
-    <td class="active">Categories:</td> 
+  <td><%= link_to 'Categories', [:admin, :categories], class: "nav-link" %></td>
     <td class="success"><%= @category_count %></td> 
   </tr>
 </table>
