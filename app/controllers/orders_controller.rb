@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
       total_cents: cart_subtotal_cents,
       stripe_charge_id: stripe_charge.id, # returned by stripe
     )
-
+  #item.product from ln23 of app/views/orders/show.html is possible bc of ln47 and ln51 here, so it is able to access item.product the whole product with image price stock etc
     enhanced_cart.each do |entry|
       product = entry[:product]
       quantity = entry[:quantity]
