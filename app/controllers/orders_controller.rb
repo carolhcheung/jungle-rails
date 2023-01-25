@@ -2,6 +2,8 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    # @line_items = LineItem.where(order_id: @order.id)
+    # @products = @line_items.map {|line_item| Product.find(line_item.product_id)}
   end
 
   def create
@@ -54,6 +56,6 @@ class OrdersController < ApplicationController
     end
     order.save!
     order
-  end
+    end
 
 end
