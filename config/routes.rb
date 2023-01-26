@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
+  
+  root to: 'products#index'
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
-  # resources :users, only: [:new, :create], path_names: {new: 'signup', create: 'users'}
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
 
-  root to: 'products#index'
+  # resources :users, only: [:new, :create], path_names: {new: 'signup', create: 'users'}
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
