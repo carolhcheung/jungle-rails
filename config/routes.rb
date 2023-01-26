@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+
+  # resources :users, only: [:new, :create], path_names: {new: 'signup', create: 'users'}
+
   root to: 'products#index'
 
   resources :products, only: [:index, :show]
