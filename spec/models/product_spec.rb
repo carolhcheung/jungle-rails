@@ -30,5 +30,12 @@ RSpec.describe Product, type: :model do
         @product.save
         expect(@product.errors.full_messages).to include("Category can\'t be blank")
       end
+
+      it "Product creates with no errors" do
+        @category = Category.new(name: "myCategoryName")
+        @product = Product.new(name: "myProductName", price: "10", quantity: "2", category: @category)
+        @product.valid?
+        expect(@product.errors).not_to include("Can\'t be blank")
+      end
   end
 end
