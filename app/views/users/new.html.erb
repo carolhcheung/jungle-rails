@@ -5,19 +5,33 @@
   </header>
 
 
-<div class="col-2">
+<div class="col-5">
 <%= form_for :user, url: '/users' do |f| %>
 
-  Name: <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+  <%= f.label :email %>
+  <%= f.text_field :email, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+  <%= f.label :password %>
+  <%= f.password_field :password, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, class: 'form-control mb-3' %>
+  </div>
   
-  Email: <%= f.text_field :email %>
-
-  Password: <%= f.password_field :password %>
  
-  Password Confirmation: <%= f.password_field :password_confirmation, class: 'mb-3'%>
- 
-  <%= f.submit "Submit", class: 'btn btn-primary' %>
+  <%= f.submit "Submit", class: 'btn btn-primary mb-3' %>
 
+  <h5>Already have an account? <%= link_to 'Login Now!', [:login] %></h5>
 <% end %>
 </div>
 

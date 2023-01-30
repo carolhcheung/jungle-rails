@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   root to: 'products#index'
 
+  #these are custom routes to avoid multiple controllers being created
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
