@@ -60,4 +60,40 @@ RSpec.describe User, type: :model do
     end
     
   end
+
+  describe '.authenticate_with_credentials' do
+    # examples for this class method here
+    it "Successful login when credentials match" do
+      @user = User.new(first_name: "test", last_name: "test", password: "testing", password_confirmation: "testing", email: "test@test.com")
+      @user.save
+      expect(User.authenticate_with_credentials("test@test.com", "testing")).to be_present
+    end
+
+    it "Unsuccessful login when email mismatch" do
+      @user = User.new(first_name: "test", last_name: "test", password: "testing", password_confirmation: "testing", email: "test@test.com")
+      @user.save
+      expect(User.authenticate_with_credentials("test@test.co", "testing")).not_to be_present
+    end
+
+    it "Unsuccessful login when password mismatch" do
+      @user = User.new(first_name: "test", last_name: "test", password: "testing", password_confirmation: "testing", email: "test@test.com")
+      @user.save
+      expect(User.authenticate_with_credentials("test@test.com", "testin")).not_to be_present
+    end
+
+    it "Unsuccessful login when email has extra spaces" do
+      @user = User.new(first_name: "test", last_name: "test", password: "testing", password_confirmation: "testing", email: "test@test.com")
+      @user.save
+      expect(User.authenticate_with_credentials("   test@test.com  ", "testing")).to be_present
+    end
+
+    it "Unsuccessful login when email has wierd casing" do
+      @user = User.new(first_name: "test", last_name: "test", password: "testing", password_confirmation: "testing", email: "test@test.com")
+      @user.save
+      expect(User.authenticate_with_credentials("tesT@teST.coM", "testing")).to be_present
+    end
+
+
+  end
+
 end

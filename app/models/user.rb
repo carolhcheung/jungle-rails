@@ -7,5 +7,19 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true
   validates :password_digest, presence: true, length: { minimum: 6 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
+  before_save { email.downcase! }
+
+  
+  def self.authenticate_with_credentials(email, password)
+    email.downcase!
+    email.strip!
+    @user = User.find_by_email(email)
+
+    if @user && @user.authenticate(password)
+      return @user
+    else
+      return nil
+    end
+  end
 
 end
