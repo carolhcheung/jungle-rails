@@ -19,5 +19,4 @@ describe('Home Page', () => {
     cy.get("#navbarSupportedContent > :nth-child(2) > :nth-child(3) > .nav-link").should("contain", "My Cart (1)")
   });
 
-
 })
