@@ -2,8 +2,6 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    # @line_items = LineItem.where(order_id: @order.id)
-    # @products = @line_items.map {|line_item| Product.find(line_item.product_id)}
   end
 
   def create
@@ -32,7 +30,7 @@ class OrdersController < ApplicationController
     Stripe::Charge.create(
       source:      params[:stripeToken],
       amount:      cart_subtotal_cents,
-      description: "Khurram Virani's Jungle Order",
+      description: "#{full_name?}'s Jungle Order",
       currency:    'cad'
     )
   end
@@ -43,7 +41,7 @@ class OrdersController < ApplicationController
       total_cents: cart_subtotal_cents,
       stripe_charge_id: stripe_charge.id, # returned by stripe
     )
-  #item.product from ln23 of app/views/orders/show.html is possible bc of ln47 and ln51 here, so it is able to access item.product the whole product with image price stock etc
+
     enhanced_cart.each do |entry|
       product = entry[:product]
       quantity = entry[:quantity]
@@ -56,6 +54,6 @@ class OrdersController < ApplicationController
     end
     order.save!
     order
-    end
+  end
 
 end
