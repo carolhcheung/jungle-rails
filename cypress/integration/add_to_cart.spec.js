@@ -19,4 +19,12 @@ describe('Home Page', () => {
     cy.get("#navbarSupportedContent > :nth-child(2) > :nth-child(3) > .nav-link").should("contain", "My Cart (1)")
   });
 
+  it("Adds second of a same product to cart", () => {
+    cy.get(":nth-child(1) > div > .button_to > .btn")
+      .click({ force: true })
+    cy.get(":nth-child(1) > div > .button_to > .btn")
+      .click({ force: true })
+    cy.get("#navbarSupportedContent > :nth-child(2) > :nth-child(3) > .nav-link").should('contain', 'My Cart (2)')
+  })
+
 })
